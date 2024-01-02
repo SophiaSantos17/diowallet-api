@@ -20,4 +20,10 @@ async function signin(body){
     return authRepository.generateToken(userExists._id);
 }
 
-export default {signup, signin};
+async function userLogged(id){
+    const user = await authRepository.findById(id);
+    if(!user) throw new Error ("Usuário não encontrado");
+    return user;
+}
+
+export default {signup, signin, userLogged};

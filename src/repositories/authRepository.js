@@ -16,6 +16,10 @@ async function findByEmail(email){
 async function generateToken(id){
     return jwt.sign({id}, process.env.SECRET, {expiresIn: 86400})
 }
-export default {create, findByEmail, generateToken};
+export default {create, findByEmail, findById, generateToken};
 
+async function findById(id) {
+    const user = await UserSchema.findById(id);
+    return user;
+  }
 
