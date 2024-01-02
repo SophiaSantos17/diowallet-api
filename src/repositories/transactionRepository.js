@@ -1,4 +1,5 @@
 
+
 import TransactionSchema from "../schemas/Transaction.js"
 
 async function create(data){
@@ -9,4 +10,12 @@ async function findAllByUser(id){
     return await TransactionSchema.find({userId: id})
 }
 
-export default {create, findAllByUser}
+async function editTransactionById(id, body) {
+    return await TransactionSchema.findByIdAndUpdate(id, body, { new: true });
+}
+
+async function deleteByID(id){
+    return await TransactionSchema.findByIdAndDelete(id);
+}
+
+export default {create, findAllByUser, deleteByID, editTransactionById}

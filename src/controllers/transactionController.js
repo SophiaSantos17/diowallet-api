@@ -25,5 +25,29 @@ async function findAllByUser(req, res){
     }
 }
 
+async function editTransactionById(req, res) {
+    const id = req.params.id;
+    const body = req.body;
 
-export default {create, findAllByUser};
+    try {
+        const transactionEdit = await transactionService.editTransactionById(id, body);
+        return res.send(transactionEdit);
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+}
+
+
+async function deleteByID(req, res){
+    const id = req.params.id;
+    try{
+        await transactionService.deleteByID(id);
+        return res.status(204).send();
+
+
+    }catch(err){
+        res.status(500).send(err.message);
+    }
+
+}
+export default {create, findAllByUser, deleteByID, editTransactionById};

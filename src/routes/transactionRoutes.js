@@ -7,17 +7,29 @@ import { CreateTransaction } from "../schemas/validation/CreateTransaction.js";
 
 const transactionRouter = Router();
 
-transactionRouter.use(authMiddleware)
-
 transactionRouter.post(
     '/transactions', 
+    authMiddleware,
     validationSchemaMiddleware(CreateTransaction),
     transactionController.create
 );
 
 transactionRouter.get(
     '/transactions', 
+    authMiddleware,
     transactionController.findAllByUser
 );
+
+transactionRouter.put(
+    '/transactions/:id', 
+    authMiddleware,
+    transactionController.editTransactionById
+);
+
+transactionRouter.delete(
+    '/transactions/:id', 
+    transactionController.deleteByID
+)
+
 
 export default transactionRouter;
