@@ -20,6 +20,12 @@ transactionRouter.get(
     transactionController.findAllByUser
 );
 
+transactionRouter.get(
+    '/transactions/:id', 
+    authMiddleware,
+    transactionController.findTransactionById
+);
+
 transactionRouter.put(
     '/transactions/:id', 
     authMiddleware,

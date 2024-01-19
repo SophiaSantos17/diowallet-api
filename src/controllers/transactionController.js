@@ -50,4 +50,16 @@ async function deleteByID(req, res){
     }
 
 }
-export default {create, findAllByUser, deleteByID, editTransactionById};
+
+async function findTransactionById(req, res) {
+    const id = req.params.id;
+    try {
+        const transaction = await transactionService.findTransactionById(id);
+        return res.send(transaction);
+
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+}
+
+export default {create, findAllByUser, deleteByID, editTransactionById, findTransactionById};

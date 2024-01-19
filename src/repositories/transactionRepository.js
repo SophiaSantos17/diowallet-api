@@ -14,8 +14,12 @@ async function editTransactionById(id, body) {
     return await TransactionSchema.findByIdAndUpdate(id, body, { new: true });
 }
 
+async function findTransactionById(id){
+    return await TransactionSchema.findById(id);
+}
+
 async function deleteByID(id){
     return await TransactionSchema.findByIdAndDelete(id);
 }
 
-export default {create, findAllByUser, deleteByID, editTransactionById}
+export default {create, findAllByUser, deleteByID, editTransactionById, findTransactionById}

@@ -18,10 +18,14 @@ async function editTransactionById(id, body) {
     return await transactionRepository.editTransactionById(id, body);
 }
 
+async function findTransactionById(id) {
+    if (!id) throw new Error("Id da transação é obrigatório");
+    return await transactionRepository.findTransactionById(id);
+}
 
 async function deleteByID(id){
     if(!id) throw new Error("Id da transação é obrigatório");
-    return awaitransactionRepository.deleteByID(id);
+    return await transactionRepository.deleteByID(id);
 }
 
-export default {create, findAllByUser, deleteByID, editTransactionById}
+export default {create, findAllByUser, deleteByID, editTransactionById, findTransactionById}
